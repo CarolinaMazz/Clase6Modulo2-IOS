@@ -17,11 +17,10 @@ class NuevoViewController: UIViewController {
     var btnCancelar:UIButton!
     var colorApp:UIColor!
     var arregloVistas = Array<UIView>()
+    let margen:CGFloat = 10
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let margen:CGFloat = 10
         
         colorApp = UIColor(red: 102/255.0, green: 204/255.0, blue: 1, alpha: 1.0)
         //margen = CGFloat(10)
@@ -91,6 +90,21 @@ class NuevoViewController: UIViewController {
         }
         
         arregloVistas.removeAll()
+    }
+    
+    //para actualizar todo cuando se rote la pantalla
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        vwCabecera.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 60)
+        
+        lbTitulo.frame = vwCabecera.frame
+        
+        segControler.frame = CGRect(x: margen, y: vwCabecera.frame.size.height + margen, width: self.view.frame.size.width - 20, height: 30)
+        
+        btnAceptar.frame = CGRect(x: margen, y: self.view.frame.size.height - 30 - margen, width: 120, height: 30)
+        
+        btnCancelar.frame = CGRect(x: self.view.frame.size.width - 120 - margen, y: btnAceptar.frame.origin.y , width: 120, height: 30)
+        
     }
 
     /*
