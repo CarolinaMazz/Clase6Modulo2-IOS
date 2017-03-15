@@ -16,7 +16,7 @@ class NuevoViewController: UIViewController {
     var btnAceptar:UIButton!
     var btnCancelar:UIButton!
     var colorApp:UIColor!
-    //var margen:Float
+    var arregloVistas = Array<UIView>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,11 +68,29 @@ class NuevoViewController: UIViewController {
     }
     
     func aceptar(sender:UIButton){
-        print("Aceptar")
+        
+        
+        if (arregloVistas.count==0){
+            print("Aceptar")
+            for i in 0...7 {
+                let vista = UIView(frame: CGRect(x: 100 + (i * 10), y: 100 + (i * 10), width: 100, height: 100))
+                vista.backgroundColor = colorApp
+                self.view.addSubview(vista)
+                arregloVistas.append(vista)
+            }
+        }
+        
+        
     }
     
     func cancelar(sender:UIButton){
-        print("Cancelar")
+        print((sender.titleLabel?.text!)!)
+        
+        for vista in arregloVistas{
+            vista.removeFromSuperview()
+        }
+        
+        arregloVistas.removeAll()
     }
 
     /*
